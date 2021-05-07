@@ -3,9 +3,14 @@ import MiniSlider from './modules/slider/miniSlider';
 import Player from './modules/player';
 import Difference from './modules/difference';
 import Forms from './modules/forms';
+import ShowInfo from './modules/showInfo';
+import Download from './modules/download';
 
 window.addEventListener('DOMContentLoaded', () => {
-    const slider = new MainSlider({container:'.page', btns:'.next'});
+    const slider = new MainSlider({
+        container:'.page',
+        btns:'.next',
+    });
     slider.render();
 
     const showUpSlider = new MiniSlider({
@@ -16,6 +21,15 @@ window.addEventListener('DOMContentLoaded', () => {
         animate: true
     });
     showUpSlider.init();
+
+    const modulesMainSlider = new MainSlider({
+        container: '.moduleapp',
+        btns: '.next',
+        prevModule: '.prevmodule',
+        nextModule: '.nextmodule'
+    });
+    modulesMainSlider.render();
+
 
     const modulesSlider = new MiniSlider({
         container: '.modules__content-slider', 
@@ -34,10 +48,14 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     feedSlider.init();
 
-    const player = new Player('.showup .play', '.overlay');
-    player.init();
+    new Player('.showup .play', '.overlay').init();
+    new Player('.module__video-item .play', '.overlay').init();
 
     new Difference('.officerold', '.officernew', '.officer__card-item').init();
 
     new Forms('.form').init();
+
+    new ShowInfo('.plus').init();
+
+    new Download('.download').init();
 });
